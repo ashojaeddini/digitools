@@ -1,0 +1,21 @@
+~o( Structure )o~
+000         Start [F0]
+001..003    Manufacturer ID [00 20 3C]
+004..008    Model ID [0D 00 53 01 01] *
+009         Sound Index (<=128) or 0 (>128)
+00A..163    Data
+164         Checksum (bit 07 - 13)
+165         Checksum (bit 00 - 06)
+166         Length (bit 07 - 13)
+167         Length (bit 00 - 06)
+168         End [F7]
+
+~o( Checksum )o~
+- Last 14 bits of sum of data bytes: 00A..163
+
+~o( Message Length )o~
+- The last two bytes before the EOM byte store the message length
+- The message includes the EOM part, but not the prefix (00A..<end>)
+
+Example:
+351 -> 0x15F -> 101011111 -> 00000010 01011111 -> 02 5F
