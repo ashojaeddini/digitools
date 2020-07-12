@@ -5,5 +5,4 @@ The initail goal of the project is provide an easy way for editing Digitone soun
 
 
 # Acknowledgments
-This project has benefited immensly from the "libdigitone" project, and builds on the research and findings of its author.
-https://gitlab.com/dhuck/libdigitone
+This project has benefited immensely from the [libdigitone](https://gitlab.com/dhuck/libdigitone) project, and builds on the research and findings of its author.
