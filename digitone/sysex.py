@@ -1,32 +1,34 @@
-from .sound import Sound
+"""A set of utility functions for loading and parsing standard SysEx files.
+"""
 
 SYSEX_BEGIN = 0xF0
 SYSEX_END = 0xF7
 MESSAGE_SIZE = 361
 
-class SysexProcessor:
+class SysEx:
 
-    def split(self, filename):
-        with open(filename, mode='rb') as file:
-            contents = file.read()
-
-        for i in range(len(contents) // MESSAGE_SIZE):
-            with open(f'{i+1:03}.syx', mode='wb') as msg_file:
-                msg_file.write(contents[i * MESSAGE_SIZE : (i + 1) * MESSAGE_SIZE])
-
-    def load(self, filename):
-        with open(filename, mode='rb') as file:
-            contents = file.read()
+    @staticmethod
+    def load(syx_file: str) -> bytes:
+        """Returns the individual SysEx messages in the input file as a list of bytes objects
+        """
+        with open(syx_file, mode='rb') as f:
+            contents = f.read()
         
         # TODO: Split into individual messages based on SysEx star/end (i.e. F0/F7) bytes instead
 
-        mesaages = []
+        messages = []
 
         for i in range(len(contents) // MESSAGE_SIZE):
-            mesaages.append(contents[i * MESSAGE_SIZE : (i + 1) * MESSAGE_SIZE])
+            messages.append(contents[i * MESSAGE_SIZE : (i + 1) * MESSAGE_SIZE])
 
-        return mesaages
+        return messages
 
+    @staticmethod
+    def split(syx_file: str):
+        """Saves the individual SysEx messages in the input file as individual files
+        """
+        messages = SysEx.load(syx_file)
 
-if __name__ == '__main__':
-    pass
+        for i, message in enumerate(messages):
+            with open(f'{i+1:03}.syx', mode='wb') as f:
+                f.write(message)

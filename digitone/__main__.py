@@ -1,23 +1,10 @@
 #!/usr/bin/env python3
 
-from .sysex import SysexProcessor
-from .sound import Sound
+import fire
+import digitone
 
 def main():
-    print('///// Digitone Utilities /////')
-    print()
-
-    processor = SysexProcessor()
-
-    messages = processor.load('data/sounds.syx')
-
-    sounds = []
-
-    for message in messages:
-        sounds.append(Sound(message))
-
-    for s in sounds:
-        print(s)
+    fire.Fire(digitone.SoundManager)
 
 if __name__ == '__main__':
     main()
