@@ -171,7 +171,7 @@ class SoundManager:
 
     @staticmethod
     def load(syx_file: str) -> list:
-        """Returns the sounds from the input file as a list of Sound objects.
+        """Loads the list of Sound objects from a SysEx file.
 
         Args:
             syx_file: Path to the input SysEx file
@@ -190,7 +190,7 @@ class SoundManager:
 
     @staticmethod
     def save(sounds: list, syx_file: str):
-        """Saves the provided sounds to the specified file.
+        """Saves a list of Sound objects to a SysEx file.
 
         Args:
             sounds: the list of sounds to save
@@ -204,27 +204,8 @@ class SoundManager:
         sysex.SysExHandler.save(messages, syx_file)
     
     @staticmethod
-    def test(syx_file: str):
-        sounds = SoundManager.load(syx_file)
-
-        ml = []
-
-        s1 = sounds[0]
-        s1.name('Test Sound 01')
-        s1.tags((Tag.TXTR, Tag.ATMO, Tag.EVOL))
-
-        s2 = sounds[1]
-        s2.name('Test Sound 02')
-        s2.tags((Tag.PAD, Tag.SOFT, Tag.VNTG))
-
-        ml.append(SoundSysExHandler.sound_to_message(s1))
-        ml.append(SoundSysExHandler.sound_to_message(s2))
-
-        sysex.SysExHandler.save(syx_file, ml)
-    
-    @staticmethod
     def print(syx_file: str):
-        """Prints the list of sounds contained in the input file.
+        """Prints the sounds in a SysEx file to the standard output.
 
         This functions prints basic information (i.e. number, name, and tags)
         of the sounds contained in the SysEx file to the standard output.
@@ -239,7 +220,7 @@ class SoundManager:
 
     @staticmethod
     def export(syx_file: str, csv_file: str):
-        """Exports the sounds in the input file to a CSV file.
+        """Exports the sounds in a SysEx file to a CSV file.
 
         This functions exports basic information (i.e. number, name, and tags)
         of the sounds contained in the SysEx file to the specified output file
@@ -266,7 +247,7 @@ class SoundManager:
     
     @staticmethod
     def update(syx_file: str, csv_file: str):
-        """Updates the sounds in the SysEx file base on values in the CSV file.
+        """Updates name and tags of sounds in a SysEx file from a CSV file.
 
         Args:
             syx_file: Path to the SysEx file to update
