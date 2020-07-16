@@ -216,7 +216,7 @@ class SoundManager:
         sounds = SoundManager.load(syx_file)
 
         for i, sound in enumerate(sounds, start=1):
-            print(f'{i:03}: {sound.name():15} {[t.name for t in sound.tags()]}')
+            print(f'{i:03}: {sound.name():15} [{", ".join([t.name for t in sound.tags()])}]')
 
     @staticmethod
     def export(syx_file: str, csv_file: str):
