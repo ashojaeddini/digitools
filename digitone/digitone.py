@@ -1,7 +1,4 @@
 """A set of utilities for managing the Elektron Digitone.
-
-The initail goal of the project is provide an easy way for editing
-Digitone sound names and tags in a SysEx (i.e. *.syx) file.
 """
 
 import enum
@@ -44,13 +41,27 @@ class Tag(enum.Enum):
 
 
 class Sound:
+    """Represents a Digitone sound
+
+    This class represents the information contained in the data portion of the
+    Digitone sound SysEx message. The complete data in stored as bytes, and only
+    name and tag are currently represented by additional variables and functions.
+
+    The tag and name information is stored in following ranges:
+        data[08 : 12] = Tags (bit flas)
+        data[12 : 28] = Name (15 chars + 0x00)
+    """
+
+    NAME_MAX_LEN = 15
+    NAME_ENCODING = 'latin-1'
+
     def __init__(self, pnum: int, data: bytes):
         self._pnum = pnum
         self._data = bytearray(data)
         self._tags = self._read_tags()
         self._name = self._read_name()
 
-    def _write_bytes(self, start: int, bs: bytes):
+    def _write(self, start: int, bs: bytes):
         for i, b in enumerate(bs):
             self._data[start + i] = b
 
@@ -70,19 +81,19 @@ class Sound:
             if t in tags:
                 tag_bytes[3 - (t.value // 8)] |= 1 << (t.value % 8)
 
-        self._write_bytes(8, tag_bytes)
+        self._write(8, tag_bytes)
 
     def _read_name(self) -> str:
-        return str(self._data[12 : min(self._data.index(0x00, 12), 27)], 'latin-1')
+        return str(self._data[12 : min(self._data.index(0x00, 12), 27)], self.NAME_ENCODING)
 
     def _write_name(self, name: str):
-        if len(name) > 15:
-            TypeError('Maximum length for sound name is 15') # TODO: Confirm that max length is 15
+        if len(name) > self.NAME_MAX_LEN:
+            TypeError(f'The sound name "{name}"" exceeds the maximum length of {self.NAME_MAX_LEN}')
 
-        name_bytes = bytearray(name.encode('latin-1'))
+        name_bytes = bytearray(name.encode(self.NAME_ENCODING))
         name_bytes.append(0x00)
 
-        self._write_bytes(12, name_bytes)
+        self._write(12, name_bytes)
 
     def pnum(self) -> int:
         return self._pnum
@@ -105,7 +116,7 @@ class Sound:
         return self._tags
 
     def __str__(self):
-        return f'{self._name:15} {[t.name for t in self._tags]}'
+        return f'{self._name.ljust(self.NAME_MAX_LEN)} [{", ".join([t.name for t in self._tags])}]'
 
 
 class SoundSysExHandler:
@@ -113,21 +124,16 @@ class SoundSysExHandler:
 
     @staticmethod
     def validate(message: bytes):
-        # Validate the message
-        # - Verify manufacturer/model ID
-        # - Verify message integrity based on checkum in EOM
-        # - Verify data length based on length in EOM
-
         eom = message[len(message) - 5 :]
 
-        v1 = message[1 : 9] == SoundSysExHandler.PREFIX
-        v2 = SoundSysExHandler.checksum(message[10 : len(message) - 5]) == eom[0 : 2]
-        v3 = SoundSysExHandler.encode_number(len(message) - 10) == eom[2 : 4]
+        if message[1 : 9] != SoundSysExHandler.PREFIX:
+            raise TypeError('The SysEx message does not match the Digitone manufacturer/model ID')
 
-        # TODO: Raise individual errors for each validation 
+        if SoundSysExHandler.checksum(message[10 : len(message) - 5]) != eom[0 : 2]:
+            raise TypeError('Data in the SysEx message is corrupted. Checksum validation failed.')
 
-        if not (v1 and v2 and v3):
-            raise TypeError('Invalid sound data encountered')
+        if SoundSysExHandler.encode_number(len(message) - 10) != eom[2 : 4]:
+            raise TypeError('Data in the SysEx message is corrupted. Length validation failed.')
 
     @staticmethod
     def message_to_sound(message: bytes) -> Sound:
@@ -216,7 +222,7 @@ class SoundManager:
         sounds = SoundManager.load(syx_file)
 
         for i, sound in enumerate(sounds, start=1):
-            print(f'{i:03}: {sound.name():15} [{", ".join([t.name for t in sound.tags()])}]')
+            print(f'{i:03}: {sound}')
 
     @staticmethod
     def export(syx_file: str, csv_file: str):

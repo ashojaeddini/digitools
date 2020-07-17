@@ -17,10 +17,10 @@ Here is what the workflow would look like:
 4. Apply the data in the CSV file back to the SysEx file using Digitools
 5. Finally, import the updated SysEx file back into Digitone
 
-Although there are multiple steps involved, they are straight forward and quick steps that can be performed in a matter of seconds. Moreover, the additional steps are well worth it given that you just have to perfrom them once for an entire bank.
+Although there are multiple steps involved, most are straightforward and quick steps that can be performed in a matter of seconds. Moreover, the additional steps are well worth taking given they only need to be done once for each bank.
 
 ## Installation
-Packaging the tool for easier consumption and installation is still in progress.
+Packaging the tool for easier consumption and installation is still a work in progress.
 
 Manwhile, follow the steps below to use the tool:
 1. Ensure Python 3.x is installed on your system
