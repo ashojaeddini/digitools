@@ -3,7 +3,7 @@
 
 import enum
 import csv
-import sysex
+import digitools.sysex as sysex
 
 class Tag(enum.Enum):
     KICK = 0
@@ -174,10 +174,12 @@ class SoundSysExHandler:
 
 
 class SoundManager:
+    """Provides functions for working with a Digitone sound file (SysEx).
+    """
 
     @staticmethod
     def load(syx_file: str) -> list:
-        """Loads the list of Sound objects from a SysEx file.
+        """Loads the list of Sound objects from a Digitone sound file (SysEx).
 
         Args:
             syx_file: Path to the input SysEx file
@@ -196,7 +198,7 @@ class SoundManager:
 
     @staticmethod
     def save(sounds: list, syx_file: str):
-        """Saves a list of Sound objects to a SysEx file.
+        """Saves a list of Sound objects to a Digitone sound file (SysEx).
 
         Args:
             sounds: the list of sounds to save
@@ -211,7 +213,7 @@ class SoundManager:
     
     @staticmethod
     def print(syx_file: str):
-        """Prints the sounds in a SysEx file to the standard output.
+        """Prints the sounds in a Digitone sound file (SysEx) to the standard output.
 
         This functions prints basic information (i.e. number, name, and tags)
         of the sounds contained in the SysEx file to the standard output.
@@ -226,7 +228,7 @@ class SoundManager:
 
     @staticmethod
     def export(syx_file: str, csv_file: str):
-        """Exports the sounds in a SysEx file to a CSV file.
+        """Exports the sounds in a Digitone sound file (SysEx) to a CSV file.
 
         This functions exports basic information (i.e. number, name, and tags)
         of the sounds contained in the SysEx file to the specified output file
@@ -253,7 +255,7 @@ class SoundManager:
     
     @staticmethod
     def update(syx_file: str, csv_file: str):
-        """Updates name and tags of sounds in a SysEx file from a CSV file.
+        """Updates name and tags of sounds in a Digitone sound file (SysEx) from a CSV file.
 
         Args:
             syx_file: Path to the SysEx file to update

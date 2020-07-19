@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import fire
-import digitone
+import digitools.digitone as digitone
 
 def main():
     try:
@@ -9,7 +9,7 @@ def main():
             {
                 'print': digitone.SoundManager.print,
                 'export': digitone.SoundManager.export,
-                'update': digitone.SoundManager.update
+                'dupdate': digitone.SoundManager.update
             }
         )
     except Exception as e:
