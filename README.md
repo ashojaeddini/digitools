@@ -19,60 +19,74 @@ Here is what the workflow would look like:
 
 Although there are multiple steps involved, most are straightforward and quick steps that can be performed in a matter of seconds. Moreover, the additional steps are well worth taking given they only need to be done once for each bank.
 
+Other possible usages of the tool include:
+- Printing a catalog of your sounds and using it as a reference
+- Renaming all sounds in a Sound Pack to add a prefix for easy identification
+- Correcting obvious tagging errors in Sound Packs before installing them (e.g. I have seen sounds in packs that have the __MINE__ tag)
+
 ## Installation
-Packaging the tool for easier consumption and installation is still a work in progress.
+There are many different ways to distribute and install Python libraries and applications. The approach I've outlined below is what I believe is the best option for most users. Those who are familiar with Python or technically inclined may choose a different approach that better suits them.
 
-Manwhile, follow the steps below to use the tool:
-1. Ensure Python 3.x is installed on your system
-2. Downlowd the source code as an archive and unpack it
-3. From the root source directory run the following command: `python digitone -h`
+### Step 1: Install _Python_
+If you don't already have a recent version of Python (3.6+) installed, follow the link below to install/upgrade your Python.
 
-If you see the following help text, then you're all set.
+__Windows / macOS:__<br>
+Download and install the latest release for you OS from here:<br>
+https://www.python.org/downloads
 
-    NAME
-        digitone
+__macOS__:<br>
+If you use _Homebrew_ (you should, it's great), I recommend installing Python using the [Homebrew Python formula](https://docs.brew.sh/Homebrew-and-Python) by executing this command:<br>
+```
+brew python
+```
 
-    SYNOPSIS
-        digitone COMMAND
+Note that depending on how python is installed and setup on your system, you may need to use `python3` and `pip3` instead of the `python` and `pip` commands shown below. The installation process should provide this information.
 
-    COMMANDS
-        COMMAND is one of the following:
+### Step 2: Install _pipx_
+If you would like to learn what _pipx_ is and what it's good for please see: [Installing stand alone command line tools](https://packaging.python.org/guides/installing-stand-alone-command-line-tools) and [pipxproject / pipx](https://github.com/pipxproject/pipx)
 
-        print
-        Prints the sounds in a SysEx file to the standard output.
+Here are the commands I use to install and configure _pipx_, which are slightly different from those listed on the above pages. Both would work.
+```
+pip install pipx
+pipx ensurepath
+```
 
-        export
-        Exports the sounds in a SysEx file to a CSV file.
+### Step 3: Install _digitools_ using _pipx_
+Once you have both _Python_ and _pipx_ set up, you can install _digitools_ using _pipx_.
 
-        update
-        Updates name and tags of sounds in a SysEx file from a CSV file.
+First, download the `.whl` file from the 'dist' directory in the repository.
 
-Note that depending on how python is installed and setup on your system you may need to invoke Python using `python3` instead of `python`.
+Next, simply execute the following command
+
+simply executing this command, replacing `<path>` with the actual path to where you downloaded the file:
+```
+pipx install <path>
+```
 
 ## Basic Usage
 To see a list of available commands:
 ```
-python digitone -h
+digitools -h
 ```
 
 To see more detailed information about the export command:
 ```
-python digitone export -h
+digitools export -h
 ```
 
 To list the sounds in a SysEx file:
 ```
-python digitone print data/sounds.syx
+digitools print data/sounds.syx
 ```
 
 To export the sounds in a SysEx file to a CSV file:
 ```
-python digitone export data/sounds.syx data/sounds.csv
+digitools export data/sounds.syx data/sounds.csv
 ```
 
 To update sounds in a SysEx file from a CSV file:
 ```
-python digitone update data/sounds.syx data/sounds.csv
+digitools update data/sounds.syx data/sounds.csv
 ```
 
 ## Acknowledgment

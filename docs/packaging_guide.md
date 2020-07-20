@@ -1,6 +1,6 @@
 # Packaging Python Applications
 
-## Generate Distributables
+## Generating Distributables
 Execute the following command to generate source and binary distributables:
 
 ```
@@ -8,9 +8,9 @@ python setup.py sdist bdist_wheel
 ```
 
 References:
-- https://packaging.python.org/tutorials/packaging-projects
+- [Packaging Python Projects](https://packaging.python.org/tutorials/packaging-projects)
 
-## Create a Virtual Environment
+## Creating a Virtual Environment
 
 ### Using _venv_
 This option can be used for development purposes and testing installations.
@@ -24,15 +24,15 @@ deactivate
 ```
 
 References:
-- https://packaging.python.org/guides/installing-using-pip-and-virtual-environments
-- https://docs.python.org/3/library/venv.html
+- [Installing packages using pip and virtual environments](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments)
+- [venv — Creation of virtual environments](https://docs.python.org/3/library/venv.html)
 
 ### Using _pipx_
 This option can be used for installing CLI applications in a virtual environment.
 
 ```
-python -m pip install --user pipx
-python -m pipx ensurepath
+pip install pipx
+pipx ensurepath
 pipx install <package>
 ```
 
@@ -40,8 +40,8 @@ Requirements:
 - Python 3.6+ is required to install pipx
 
 References:
-- https://packaging.python.org/guides/installing-stand-alone-command-line-tools
-- https://github.com/pipxproject/pipx
+- [Installing stand alone command line tools](https://packaging.python.org/guides/installing-stand-alone-command-line-tools)
+- [pipxproject / pipx](https://github.com/pipxproject/pipx)
 
 ### Using _pex_
 ```
@@ -50,10 +50,8 @@ python setup.py bdist_pex --bdist-all --bdist-dir=<path>
 ```
 
 References:
-- https://github.com/pantsbuild/pex
-- https://github.com/pantsbuild/pex/blob/master/docs/buildingpex.rst
-- https://pex.readthedocs.io/en/stable
-- https://stackoverflow.com/questions/40470046/packaging-local-module-with-pex
+- [pantsbuild / pex](https://github.com/pantsbuild/pex)
+- [Building .pex files](https://github.com/pantsbuild/pex/blob/master/docs/buildingpex.rst)
 
 ### Using _pipenv_
 ```
@@ -63,5 +61,5 @@ pipenv run python main.py
 ```
 
 References:
-- https://packaging.python.org/tutorials/managing-dependencies
-- https://pipenv.pypa.io/en/latest/basics
+- [Managing Application Dependencies](https://packaging.python.org/tutorials/managing-dependencies)
+- [Basic Usage of Pipenv](https://pipenv.pypa.io/en/latest/basics)
