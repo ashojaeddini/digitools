@@ -56,9 +56,7 @@ Once you have both _Python_ and _pipx_ set up, you can install _digitools_ using
 
 First, download the `.whl` file from the 'dist' directory in the repository.
 
-Next, simply execute the following command
-
-simply executing this command, replacing `<path>` with the actual path to where you downloaded the file:
+Next, simply execute the following command, replacing `<path>` with the actual path to where you downloaded the file:
 ```
 pipx install <path>
 ```
