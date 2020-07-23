@@ -28,11 +28,10 @@ Other possible usages of the tool include:
 There are many different ways to distribute and install Python libraries and applications. The approach I've outlined below is what I believe is the best option for most users. Those who are familiar with Python or technically inclined may choose a different approach that better suits them.
 
 ### Step 1: Install _Python_
-If you don't already have a recent version of Python (3.6+) installed, follow the link below to install/upgrade your Python.
+If you don't already have a recent version of Python (3.6+) installed, follow the links below to install/upgrade your Python.
 
 __Windows / macOS:__<br>
-Download and install the latest release for you OS from here:<br>
-https://www.python.org/downloads
+Download and install the latest release for your OS from [here](https://www.python.org/downloads)
 
 __macOS__:<br>
 If you use _Homebrew_ (you should, it's great), I recommend installing Python using the [Homebrew Python formula](https://docs.brew.sh/Homebrew-and-Python) by executing this command:<br>
@@ -40,7 +39,10 @@ If you use _Homebrew_ (you should, it's great), I recommend installing Python us
 brew python
 ```
 
-Note that depending on how python is installed and setup on your system, you may need to use `python3` and `pip3` instead of the `python` and `pip` commands shown below. The installation process should provide this information.
+Otherwise, download and install the latest release for your OS from [here](https://www.python.org/downloads)
+
+__Note:__
+Depending on how python is installed and setup on your system, you may need to use `python3` and `pip3` instead of the `python` and `pip` commands shown below. The installation process should provide this information.
 
 ### Step 2: Install _pipx_
 If you would like to learn what _pipx_ is and what it's good for please see: [Installing stand alone command line tools](https://packaging.python.org/guides/installing-stand-alone-command-line-tools) and [pipxproject / pipx](https://github.com/pipxproject/pipx)
