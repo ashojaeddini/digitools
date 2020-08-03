@@ -9,7 +9,7 @@ def main():
             {
                 'print': digitone.SoundManager.print,
                 'export': digitone.SoundManager.export,
-                'dupdate': digitone.SoundManager.update
+                'update': digitone.SoundManager.update
             }
         )
     except Exception as e:

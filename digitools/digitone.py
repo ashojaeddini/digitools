@@ -261,7 +261,8 @@ class SoundManager:
             syx_file: Path to the SysEx file to update
             csv_file: Path to the CSV file with updates
         """
-        sounds = SoundManager.load(syx_file)
+        sounds_in = SoundManager.load(syx_file)
+        sounds_out = []
 
         with open(csv_file, 'r', newline='') as f:
             reader = csv.DictReader(f, dialect='excel')
@@ -272,8 +273,10 @@ class SoundManager:
                     if row[t.name]:
                         tags.append(t)
                 
-                s = sounds[int(row['#']) - 1]
+                s = sounds_in[int(row['#']) - 1]
                 s.name(row['Sound Name'])
                 s.tags(tags)
+
+                sounds_out.append(s)
             
-        SoundManager.save(sounds, syx_file)
+        SoundManager.save(sounds_out, syx_file)
