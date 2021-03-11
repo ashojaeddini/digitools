@@ -137,7 +137,7 @@ class SoundSysExHandler:
 
     @staticmethod
     def message_to_sound(message: bytes) -> Sound:
-        SoundSysExHandler.validate(message) # TODO: Handle error to show a message
+        SoundSysExHandler.validate(message)
 
         pnum = message[9]
         data = sysex.SysExDataEncoder.decode(message[10 : len(message) - 5])
@@ -191,8 +191,11 @@ class SoundManager:
 
         sounds = []
 
-        for message in messages:
-            sounds.append(SoundSysExHandler.message_to_sound(message))
+        for i, message in enumerate(messages, start=1):
+            try:
+                sounds.append(SoundSysExHandler.message_to_sound(message))
+            except TypeError:
+                print(f'Loading the sound at position {i:03} failed. The SysEx message is not a valid sound.')
 
         return sounds
 
