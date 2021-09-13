@@ -1,21 +1,21 @@
 # Digitools
-Digitools is a collection of tools intended to help Elektron Digitakt/Digitone users.
+Digitools is a collection of utilities for Elektron devices.
 
-Currently, the only functionality provided is viewing and modifying basic Digitone sound information (i.e. name and tags)
+Currently, the only functionality provided is viewing and modifying basic sound information (i.e. name and tags) for Digitone and Analog Four MKI/MKII
 
 With this tool you can ...
-- List the name and tags of sounds in a Digitone SysEx file
-- Export the name and tags of sounds in a Digitone SysEx file to a CSV file
-- Update name and tags of sounds in a Digitone SysEx file from a CSV file
+- List the name and tags of sounds in a SysEx file
+- Export the name and tags of sounds in a SysEx file to a CSV file
+- Update name and tags of sounds in a SysEx file from a CSV file
 
-The combination of these capabilities provides a faster and easier way to rename and tag Digitone sounds outside the hardware itself.
+The combination of these capabilities provides a faster and easier way to rename and tag Digitone and Analog Four sounds outside the hardware itself.
 
 Here is what the workflow would look like:
-1. Export a SysEx dump of the sound bank you want to edit from Digitone
+1. Export a SysEx dump of the sound bank you want to edit from the device
 2. Export the information from the SysEx file to a CSV file using Digitools
 3. Open the CSV file with a spreadsheet application (e.g. Excel) and modify sound names and tags
 4. Apply the data in the CSV file back to the SysEx file using Digitools
-5. Finally, import the updated SysEx file back into Digitone
+5. Finally, import the updated SysEx file back into the device
 
 Although there are multiple steps involved, most are straightforward and quick steps that can be performed in a matter of seconds. Moreover, the additional steps are well worth taking given they only need to be done once for each bank.
 

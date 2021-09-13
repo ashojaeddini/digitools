@@ -1,6 +1,6 @@
 import setuptools
 
-VERSION = '0.2.1'
+VERSION = '0.3'
 
 DEPENDENCIES = [
     'fire'
@@ -10,8 +10,8 @@ setuptools.setup(
     name='digitools',
     version=VERSION,
     author='Ali Shojaeddini',
-    description="Digitools is a collection of tools intended to help Elektron Digitakt/Digitone users.",
-    url='https://github.com/ashojaeddini/digitone',
+    description="Digitools is a collection of utilities for Elektron devices.",
+    url='https://github.com/ashojaeddini/digitools',
     license='MIT',
     packages=setuptools.find_packages(),
     classifiers=[

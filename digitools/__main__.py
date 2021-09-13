@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 
 import fire
-import digitools.digitone as digitone
+import digitools.sound as sound
 
 def main():
     try:
         fire.Fire(
             {
-                'print': digitone.SoundManager.print,
-                'export': digitone.SoundManager.export,
-                'update': digitone.SoundManager.update
+                'print':  sound.SoundManager.print,
+                'export': sound.SoundManager.export,
+                'update': sound.SoundManager.update,
+                'decode': sound.SoundManager.decode
             }
         )
     except Exception as e:

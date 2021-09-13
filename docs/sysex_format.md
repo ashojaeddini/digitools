@@ -1,12 +1,13 @@
-# Digitone Sound SysEx Structure
+# Elektron Sound SysEx Structure
 ## Overall Structure
-The following table shows the overall layout of the SysEx message for Digitone sounds.
+The following table shows the overall layout of the SysEx message for sounds of supported Elektron devices.
 
 | Bytes (Hex) | Description                      | Value (Hex)    |
-| -----       | -----------                      | -----          |
+| ----------- | -------------------------------- | -------------- |
 | 000         | SysEx Start                      | F0             |
 | 001 .. 003  | Manufacturer ID                  | 00 20 3C       |
-| 004 .. 008  | Model ID                         | 0D 00 53 01 01 |
+| 004         | Model ID                         |                |
+| 004 .. 008  | TBD                              | 00 53 01 01    |
 | 009         | Sound number in Bank<sup>*</sup> |                |
 | 00A .. 163  | 7-bit Encoded Data               |                |
 | 164 .. 165  | Checksum                         |                |
@@ -14,6 +15,11 @@ The following table shows the overall layout of the SysEx message for Digitone s
 | 168         | SysEx End [F7]                   | F7             |
 
 <sup>*</sup> For sounds 1 - 128 the value is 0 - 127. For sounds beyond 128 the value is 0.
+
+## Model ID
+The model IDs for devices currently supported are:
+- 0x06: Analog Four
+- 0x0D: Digitone
 
 ## Checksum
 - Sum of all the bytes in the data (00A..163)

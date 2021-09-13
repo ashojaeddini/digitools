@@ -1,4 +1,4 @@
-# Digitone Sound Data Layout
+# Sound Data Layout
 The following layout corresponds to non-encoded representation of sound data rather than the 7-bit encoded representation in the SysEx message.
 
 | Range     | Description            |
